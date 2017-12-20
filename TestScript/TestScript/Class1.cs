@@ -24,12 +24,19 @@ namespace TestScript
         //
         //----------------------------------------------------------------------------------------------------------------------
         //              Kopioitava koodi
-        //-----------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------
 
 
 
         void Main()
         {
+            
+            // ------------ Auto update ---------------
+
+            Runtime.UpdateFrequency = UpdateFrequency.Update10;
+
+            // ------------ Definitions ---------------
+
             IMyTextPanel naytto = GridTerminalSystem.GetBlockWithName("infoscreen") as IMyTextPanel;
             IMyPistonBase poraPiston = GridTerminalSystem.GetBlockWithName("Piston 1") as IMyPistonBase;
             IMyShipDrill drill = GridTerminalSystem.GetBlockWithName("Drill") as IMyShipDrill;
@@ -38,8 +45,8 @@ namespace TestScript
             float velocity = 0.0f;
             float maxdepth = 0.0f;
             string poratPaalla = null;
-            
 
+            // ------------ Logiikka ---------------
 
             if ((drill as IMyFunctionalBlock).Enabled == true)
             {
@@ -57,7 +64,8 @@ namespace TestScript
 
 
 
-        //------ Screen writing ---------------------------------------------------
+            // ------------ Screen writing ---------------
+
             naytto.WritePublicText("Syvyys: " + sijainti.ToString("0.0") + "     Velocity: " + velocity.ToString("0.0") + "    Limit: " + maxdepth.ToString("0.0") + '\n', false);
             naytto.WritePublicText("Porat: " + poratPaalla, true);
             naytto.ShowPublicTextOnScreen();

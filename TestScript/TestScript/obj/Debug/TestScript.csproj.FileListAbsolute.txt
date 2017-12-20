@@ -1,0 +1,1 @@
+C:\Users\Matti\AppData\Roaming\SpaceEngineers\Mods\MyScriptMod\Data\Scripts\TestScript\TestScript\obj\Debug\TestScript.csprojResolveAssemblyReference.cache
