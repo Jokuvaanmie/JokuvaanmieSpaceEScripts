@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Space engineers repositories
 using Sandbox.Common;
 using Sandbox.Common.Components;
 using Sandbox.Common.ObjectBuilders;
@@ -19,8 +20,8 @@ namespace TestScript
     {
         IMyGridTerminalSystem GridTerminalSystem;
         //
-        //http://steamcommunity.com/sharedfiles/filedetails/?id=360966557
-        //https://forum.keenswh.com/threads/pb-scripting-guide-how-to-use-self-updating.7398267/
+        // http://steamcommunity.com/sharedfiles/filedetails/?id=360966557
+        // https://forum.keenswh.com/threads/pb-scripting-guide-how-to-use-self-updating.7398267/
         //
         //----------------------------------------------------------------------------------------------------------------------
         //              Kopioitava koodi
