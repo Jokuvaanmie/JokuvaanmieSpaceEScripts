@@ -27,6 +27,8 @@ namespace poraAlusScriptit
         //              Kopioitava koodi
         //----------------------------------------------------------------------------------------------------------------------
 
+
+
         void Main()
         {
 
@@ -36,26 +38,51 @@ namespace poraAlusScriptit
 
             // ------------ Definitions ---------------
 
-            IMyTextPanel naytto1 = GridTerminalSystem.GetBlockWithName("infoscreen") as IMyTextPanel;
-            IMyTextPanel naytto2 = GridTerminalSystem.GetBlockWithName("infoscreen") as IMyTextPanel;
-            IMyTextPanel naytto3 = GridTerminalSystem.GetBlockWithName("infoscreen") as IMyTextPanel;
-            IMyTextPanel naytto4 = GridTerminalSystem.GetBlockWithName("infoscreen") as IMyTextPanel;
+            IMyTextPanel naytto1 = GridTerminalSystem.GetBlockWithName("infoscreen 1") as IMyTextPanel;
+            IMyTextPanel naytto2 = GridTerminalSystem.GetBlockWithName("infoscreen 2") as IMyTextPanel;
+            IMyTextPanel naytto3 = GridTerminalSystem.GetBlockWithName("infoscreen 3") as IMyTextPanel;
+            IMyTextPanel naytto4 = GridTerminalSystem.GetBlockWithName("infoscreen 4") as IMyTextPanel;
 
-
-
-
+            IMyCargoContainer cargo1 = GridTerminalSystem.GetBlockWithName("Maineri cargo 1") as IMyCargoContainer;
+            IMyCargoContainer cargo2 = GridTerminalSystem.GetBlockWithName("Maineri cargo 2") as IMyCargoContainer;
             // ------------ Screen writing ---------------
 
-            naytto1.WritePublicText("Testi");
 
+            // --- Cargo 1 usage ---
+            float usedVolume1 = 0.0f;
+            float maxVolume1 = 0.0f;
+
+            usedVolume1 = (float)cargo1.GetInventory(0).CurrentVolume;
+            maxVolume1 += (float)cargo1.GetInventory(0).MaxVolume;
+
+            float pctUsed1 = 100.0f * usedVolume1 / maxVolume1;
+
+
+
+
+            // --- Cargo 2 usage ---
+
+            float usedVolume2 = 0.0f;
+            float maxVolume2 = 0.0f;
+
+            usedVolume2 = (float)cargo2.GetInventory(0).CurrentVolume;
+            maxVolume2 += (float)cargo2.GetInventory(0).MaxVolume;
+
+            float pctUsed2 = 100.0f * usedVolume2 / maxVolume2;
+
+
+
+
+
+
+
+
+            naytto1.WritePublicText("\n\n Cargo-1 käytössä:  " + (int)pctUsed1 + "%", false);
+            naytto1.WritePublicText("\n Cargo-2 käytössä:  " + (int)pctUsed2 + "%\n", true);
 
 
 
             naytto1.ShowPublicTextOnScreen();
-            naytto2.ShowPublicTextOnScreen();
-            naytto3.ShowPublicTextOnScreen();
-            naytto4.ShowPublicTextOnScreen();
-
         }
 
 
@@ -67,3 +94,21 @@ namespace poraAlusScriptit
         //----------------------------------------------------------------------------------------------------------------------
     }
 }
+
+
+
+
+
+
+
+
+
+/*
+                 while(palkki_1 < 15) { 
+                     naytto1.WritePublicText("| ", true);
+                     palkki_1++;
+                 }
+
+                 naytto1.WritePublicText("]",true);
+
+         */
