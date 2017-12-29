@@ -13,6 +13,7 @@ using Sandbox.Engine;
 using Sandbox.ModAPI.Ingame;
 using Sandbox.ModAPI.Interfaces;
 using Sandbox.Game;
+using VRage.Game.ModAPI;
 
 namespace poraAlusScriptit
 {
@@ -45,41 +46,58 @@ namespace poraAlusScriptit
 
             IMyCargoContainer cargo1 = GridTerminalSystem.GetBlockWithName("Maineri cargo 1") as IMyCargoContainer;
             IMyCargoContainer cargo2 = GridTerminalSystem.GetBlockWithName("Maineri cargo 2") as IMyCargoContainer;
-            // ------------ Screen writing ---------------
+
+            var drills = new List<IMyTerminalBlock>();
+            GridTerminalSystem.GetBlocksOfType<IMyShipDrill>(drills);
+
+
+
+            // ------------ Logic ---------------
+
+
 
 
             // --- Cargo 1 usage ---
             float usedVolume1 = 0.0f;
             float maxVolume1 = 0.0f;
-
             usedVolume1 = (float)cargo1.GetInventory(0).CurrentVolume;
             maxVolume1 += (float)cargo1.GetInventory(0).MaxVolume;
-
             float pctUsed1 = 100.0f * usedVolume1 / maxVolume1;
 
 
-
-
             // --- Cargo 2 usage ---
-
             float usedVolume2 = 0.0f;
             float maxVolume2 = 0.0f;
-
             usedVolume2 = (float)cargo2.GetInventory(0).CurrentVolume;
             maxVolume2 += (float)cargo2.GetInventory(0).MaxVolume;
-
             float pctUsed2 = 100.0f * usedVolume2 / maxVolume2;
 
 
+            // --- drill cargo usage --
+            float drillVolume = 0.0f;
+            float drillMax = 0.0f;
+
+            for (int i = 0; i < drills.Count; i++)
+            {
+                IMyShipDrill drill = drills[i] as IMyShipDrill;
+
+                drillVolume += (float)drill.GetInventory(0).CurrentVolume;
+                drillMax += (float)drill.GetInventory(0).MaxVolume;
+
+            }
+
+            float drillUsed = 100.0f * drillVolume / drillMax;
 
 
 
 
+
+            // ------------ Screen writing ---------------
 
 
             naytto1.WritePublicText("\n\n Cargo-1 käytössä:  " + (int)pctUsed1 + "%", false);
             naytto1.WritePublicText("\n Cargo-2 käytössä:  " + (int)pctUsed2 + "%\n", true);
-
+            naytto1.WritePublicText(" Porien cargo:  " + (int)drillUsed + "%\n", true);
 
 
             naytto1.ShowPublicTextOnScreen();
